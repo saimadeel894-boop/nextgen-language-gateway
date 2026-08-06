@@ -142,7 +142,7 @@ function Recruitment() {
           {PARTNERS.map(([country, list]) => (
             <article
               key={country}
-              className="card-lift rounded-2xl border border-border bg-card p-7 shadow-soft"
+              className="card-premium rounded-2xl border border-border bg-card p-7 shadow-soft"
             >
               <h3 className="text-lg text-primary">{country}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{list}</p>

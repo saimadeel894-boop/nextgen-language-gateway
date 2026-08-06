@@ -46,7 +46,7 @@ function Courses() {
           {COURSES.map((course) => (
             <article
               key={course.slug}
-              className="card-lift flex flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
+              className="card-premium flex flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
             >
               <h2 className="text-xl leading-snug text-primary">{course.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{course.summary}</p>

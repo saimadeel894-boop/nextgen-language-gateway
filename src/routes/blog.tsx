@@ -65,7 +65,7 @@ function Blog() {
         </div>
 
         {featured ? (
-          <article className="card-lift mt-12 grid gap-8 rounded-3xl border border-border bg-card p-8 shadow-soft lg:grid-cols-[1.2fr_1fr] lg:p-12">
+          <article className="card-premium mt-12 grid gap-8 rounded-3xl border border-border bg-card p-8 shadow-soft lg:grid-cols-[1.2fr_1fr] lg:p-12">
             <div>
               <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-foreground">
                 {featured.category}
@@ -93,7 +93,7 @@ function Blog() {
           {rest.map((post) => (
             <article
               key={post.slug}
-              className="card-lift flex flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
+              className="card-premium flex flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
             >
               <span className="w-fit rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
                 {post.category}
