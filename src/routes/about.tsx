@@ -129,7 +129,7 @@ function About() {
           {PILLARS.map(({ icon: Icon, title, text }) => (
             <article
               key={title}
-              className="card-lift rounded-2xl border border-border bg-card p-8 shadow-soft"
+              className="card-premium rounded-2xl border border-border bg-card p-8 shadow-soft"
             >
               <span className="grid size-11 place-items-center rounded-xl bg-accent-soft">
                 <Icon className="size-5 text-accent-foreground" />
@@ -162,7 +162,7 @@ function About() {
         <SectionHeading eyebrow="Our team" title="The people you will work with" align="center" />
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {TEAM.map((t) => (
-            <article key={t.name} className="card-lift rounded-2xl bg-card shadow-soft">
+            <article key={t.name} className="card-premium rounded-2xl bg-card shadow-soft">
               <img
                 src={t.img}
                 alt={`${t.name}, ${t.role}`}
