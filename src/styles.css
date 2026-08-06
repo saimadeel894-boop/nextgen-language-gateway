@@ -389,4 +389,9 @@
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
+
