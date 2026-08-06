@@ -19,8 +19,11 @@ import teacher2 from "@/assets/teacher-2.jpg";
 import teacher3 from "@/assets/teacher-3.jpg";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading } from "@/components/site/section";
+import { Reveal } from "@/components/site/reveal";
+import { TrustStrip } from "@/components/site/trust-strip";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { COURSES, SITE } from "@/components/site/site-data";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
