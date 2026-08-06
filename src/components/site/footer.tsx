@@ -6,11 +6,22 @@ import { Logo } from "./logo";
 
 export function Footer() {
   return (
-    <footer className="surface-hero mt-24 text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:px-8">
+    <footer className="surface-hero relative mt-24 overflow-hidden text-primary-foreground">
+      <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div
+        className="drift pointer-events-none absolute -top-40 -left-24 size-[30rem] rounded-full opacity-15 blur-3xl"
+        style={{ background: "var(--gradient-gold)" }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{ backgroundImage: "var(--gradient-gold)", opacity: 0.5 }}
+        aria-hidden="true"
+      />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <Logo className="bg-primary-foreground/12" />
+            <Logo />
             <span>
               <span className="block font-display text-base font-semibold">Next Generations</span>
               <span className="block text-[0.65rem] tracking-[0.22em] uppercase opacity-70">
@@ -29,7 +40,7 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="rounded-full border border-primary-foreground/25 px-4 py-1.5 text-xs transition-colors hover:bg-primary-foreground/12"
+                className="rounded-full border border-primary-foreground/25 px-4 py-1.5 text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:bg-primary-foreground/12"
               >
                 {s.label}
               </a>
@@ -86,7 +97,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-primary-foreground/15">
+      <div className="relative border-t border-primary-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs opacity-70 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
           <p>{SITE.hours}</p>
