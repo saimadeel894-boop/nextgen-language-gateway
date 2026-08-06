@@ -145,7 +145,7 @@ function Home() {
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -right-40 bottom--20 size-[30rem] rounded-full opacity-20 blur-3xl"
+          className="pointer-events-none absolute -right-40 -bottom-20 size-[30rem] rounded-full opacity-20 blur-3xl"
           style={{ background: "oklch(0.62 0.14 240)" }}
           aria-hidden="true"
         />
@@ -256,7 +256,7 @@ function Home() {
         </Reveal>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {REASONS.map(({ icon: Icon, title, text }, i) => (
-            <Reveal key={title} delay={i * 80} as="article" className="h-full">
+            <Reveal key={title} delay={i * 80} className="h-full">
               <article className="card-premium h-full rounded-2xl border border-border bg-card p-7 shadow-soft">
                 <span className="grid size-12 place-items-center rounded-xl bg-primary-soft ring-1 ring-primary/10">
                   <Icon className="size-5 text-primary" />

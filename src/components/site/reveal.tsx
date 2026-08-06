@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -40,7 +40,7 @@ export function Reveal({
     <Tag
       ref={ref}
       data-revealed={shown ? "true" : "false"}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+      style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
       className={`reveal-on-scroll ${className}`}
     >
       {children}
