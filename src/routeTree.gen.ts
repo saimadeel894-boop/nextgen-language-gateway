@@ -15,6 +15,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as StudentRecruitmentRouteImport } from './routes/student-recruitment'
+import { Route as StudentServicesRouteImport } from './routes/student-services'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const StudentRecruitmentRoute = StudentRecruitmentRouteImport.update({
   path: '/student-recruitment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentServicesRoute = StudentServicesRouteImport.update({
+  id: '/student-services',
+  path: '/student-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
+  '/student-services': typeof StudentServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
+  '/student-services': typeof StudentServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,14 +79,27 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
+  '/student-services': typeof StudentServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/blog' | '/contact' | '/courses' | '/student-recruitment'
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/contact'
+    | '/courses'
+    | '/student-recruitment'
+    | '/student-services'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/about' | '/blog' | '/contact' | '/courses' | '/student-recruitment'
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/contact'
+    | '/courses'
+    | '/student-recruitment'
+    | '/student-services'
   id:
     | '__root__'
     | '/'
@@ -87,6 +108,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/student-recruitment'
+    | '/student-services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,6 +118,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   StudentRecruitmentRoute: typeof StudentRecruitmentRoute
+  StudentServicesRoute: typeof StudentServicesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentRecruitmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student-services': {
+      id: '/student-services'
+      path: '/student-services'
+      fullPath: '/student-services'
+      preLoaderRoute: typeof StudentServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -152,17 +182,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   StudentRecruitmentRoute: StudentRecruitmentRoute,
+  StudentServicesRoute: StudentServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
