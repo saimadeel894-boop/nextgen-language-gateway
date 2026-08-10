@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Next Generations Language Center",
   short: "Next Generations",
-  tagline: "Unlock Your Future Through Language Learning",
+  tagline: "Language learning and international education, guided end to end",
   phone: "+44 20 7946 0321",
   phoneHref: "tel:+442079460321",
   whatsapp: "+44 7700 900123",
@@ -19,73 +19,73 @@ export const SITE = {
 
 export const NAV = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
+  { to: "/about", label: "About" },
   { to: "/courses", label: "Courses" },
-  { to: "/student-recruitment", label: "Student Recruitment" },
-  { to: "/blog", label: "Blog" },
+  { to: "/student-services", label: "Student Services" },
+  { to: "/student-recruitment", label: "Recruitment" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export const COURSES = [
   {
     slug: "general-english",
-    title: "General English Programme",
+    title: "General English",
     summary:
-      "A structured pathway from foundation to advanced fluency, built around real conversation, academic reading and confident writing.",
+      "A structured pathway from foundation to advanced fluency, built around real conversation, reading and confident writing.",
     duration: "8 – 36 weeks",
-    level: "A1 – C1",
+    level: "Beginner to Advanced",
     hours: "15 hrs / week",
-    highlights: ["Small classes of 12", "Weekly progress reviews", "Certificate on completion"],
+    highlights: ["Small, focused classes", "Regular progress reviews", "Speaking practice every lesson"],
   },
   {
     slug: "ielts",
     title: "IELTS Preparation",
     summary:
-      "Intensive exam training with full mock tests, band-score diagnostics and one-to-one speaking clinics led by former examiners.",
+      "Focused exam training covering all four skills, with practice tests, timing strategy and individual speaking feedback.",
     duration: "6 – 12 weeks",
-    level: "B1 – C1",
+    level: "Intermediate and above",
     hours: "20 hrs / week",
-    highlights: ["Weekly mock exams", "Band 7+ strategy labs", "Examiner-led speaking"],
+    highlights: ["Full practice tests", "Skill-by-skill strategy", "One-to-one speaking feedback"],
   },
   {
     slug: "communication",
     title: "Communication & Public Speaking",
     summary:
-      "Practical training in interviews, presentations and professional correspondence for students entering global universities.",
+      "Practical training in interviews, presentations and professional conversation for students and working professionals.",
     duration: "6 weeks",
-    level: "B1+",
+    level: "Intermediate and above",
     hours: "8 hrs / week",
-    highlights: ["Interview simulations", "Presentation coaching", "Video feedback"],
+    highlights: ["Interview practice", "Presentation coaching", "Personal feedback sessions"],
   },
   {
     slug: "business-english",
     title: "Business & Academic English",
     summary:
-      "Sector-specific vocabulary, report writing and negotiation practice for professionals and postgraduate applicants.",
+      "Professional vocabulary, report and email writing, and academic study skills for university or workplace settings.",
     duration: "10 weeks",
-    level: "B2 – C1",
+    level: "Upper-intermediate",
     hours: "10 hrs / week",
-    highlights: ["Case-study seminars", "CV & cover letter clinic", "Industry vocabulary"],
+    highlights: ["Report and email writing", "CV and cover letter clinic", "Meeting and negotiation practice"],
   },
   {
     slug: "world-languages",
-    title: "World Languages",
+    title: "Other Language Courses",
     summary:
-      "Native-speaker tuition in German, French, Turkish and Arabic, from absolute beginner through conversational confidence.",
+      "Tuition in additional languages, from absolute beginner through everyday conversational confidence.",
     duration: "12 weeks",
-    level: "A1 – B2",
+    level: "Beginner to Intermediate",
     hours: "6 hrs / week",
-    highlights: ["Native instructors", "Cultural immersion evenings", "Flexible evening groups"],
+    highlights: ["Conversation-led lessons", "Cultural context", "Flexible evening groups"],
   },
   {
     slug: "young-learners",
-    title: "Young Learners Academy",
+    title: "Young Learners",
     summary:
-      "Age-appropriate language development for ages 9–16, with parent reporting and a safe, supervised learning environment.",
+      "Age-appropriate language development for school-age students, with regular parent updates and a supportive classroom.",
     duration: "Termly",
     level: "Ages 9 – 16",
     hours: "4 hrs / week",
-    highlights: ["Parent progress reports", "Safeguarding trained staff", "Project-based learning"],
+    highlights: ["Parent progress updates", "Project-based learning", "Encouraging environment"],
   },
 ];
 
@@ -95,18 +95,18 @@ export const POSTS = [
     category: "Exam Preparation",
     date: "12 July 2026",
     readTime: "6 min read",
-    title: "Seven habits that move an IELTS speaking score from 6.0 to 7.5",
+    title: "Seven habits that lift an IELTS speaking performance",
     excerpt:
-      "Fluency is rarely the real barrier. Our examiners break down the small, repeatable habits that shift a speaking band in under eight weeks.",
+      "Fluency is rarely the real barrier. Our teachers break down the small, repeatable habits that make speaking answers clearer under exam pressure.",
   },
   {
-    slug: "uk-student-visa-2026",
+    slug: "student-visa-checklist",
     category: "Education News",
     date: "28 June 2026",
     readTime: "5 min read",
-    title: "What the 2026 student visa updates mean for international applicants",
+    title: "A practical timeline for international student applications",
     excerpt:
-      "New financial evidence rules and updated CAS timelines change how early you should begin your application. Here is a practical timeline.",
+      "Deadlines, documents and financial evidence take longer than most applicants expect. Here is a realistic month-by-month plan.",
   },
   {
     slug: "thinking-in-english",
@@ -118,20 +118,20 @@ export const POSTS = [
       "Translation slows you down at exactly the wrong moment. Three classroom-tested techniques to build direct thought in a second language.",
   },
   {
-    slug: "student-showcase-spring",
+    slug: "study-habits-that-work",
     category: "Student Updates",
     date: "02 June 2026",
     readTime: "3 min read",
-    title: "Spring showcase: 41 students received university offers this term",
+    title: "Study habits that make a difference between lessons",
     excerpt:
-      "From Manchester to Toronto, our spring cohort secured offers across 18 partner institutions. A look at where they are heading next.",
+      "What students do in the hours between classes shapes progress more than any single lesson. Simple routines that compound.",
   },
   {
     slug: "academic-writing-structure",
     category: "Learning Tips",
     date: "21 May 2026",
     readTime: "7 min read",
-    title: "The paragraph structure that university markers are looking for",
+    title: "The paragraph structure that university markers look for",
     excerpt:
       "Academic writing rewards predictable architecture. Learn the four-move paragraph that keeps your argument visible on every page.",
   },
@@ -142,6 +142,15 @@ export const POSTS = [
     readTime: "5 min read",
     title: "Nine questions to ask before enrolling at any language centre",
     excerpt:
-      "Accreditation, class size, teacher qualifications and progress tracking. A checklist for families comparing schools abroad.",
+      "Class size, teacher qualifications, placement testing and progress tracking. A checklist for families comparing schools.",
   },
+];
+
+/** Non-promotional commitments — no invented awards, ratings or partnerships. */
+export const COMMITMENTS = [
+  "Experienced instructors",
+  "Small class sizes",
+  "Personalised study plans",
+  "International education guidance",
+  "Support for students and parents",
 ];
