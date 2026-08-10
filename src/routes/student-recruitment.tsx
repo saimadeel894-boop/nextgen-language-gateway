@@ -13,7 +13,7 @@ export const Route = createFileRoute("/student-recruitment")({
       {
         name: "description",
         content:
-          "University admission assistance, visa guidance, counselling and application support for international students, with 38 partner universities worldwide.",
+          "University admission assistance, application support, student counselling and career guidance for international students planning to study abroad.",
       },
       {
         property: "og:title",
@@ -46,27 +46,25 @@ const SERVICES = [
   {
     icon: Plane,
     title: "Visa guidance",
-    text: "CAS tracking, financial evidence checks, interview preparation and a pre-departure briefing before you travel.",
+    text: "Guidance on the documents, evidence and timelines involved, plus a pre-departure briefing before you travel.",
   },
   {
     icon: UserRoundCheck,
     title: "Student counselling",
-    text: "A named advisor throughout, with counselling available in Arabic, Urdu, Turkish, French and English.",
+    text: "A named advisor throughout, available to both students and parents at every stage.",
   },
   {
     icon: Wallet,
-    title: "Scholarship & funding",
-    text: "Identification of merit and need-based awards, plus support assembling the supporting documentation.",
+    title: "Career & education guidance",
+    text: "Help identifying funding and scholarship opportunities, and assembling the supporting documentation.",
   },
 ];
 
-const PARTNERS = [
-  ["United Kingdom", "Manchester · Leeds · Coventry · Sussex"],
-  ["Canada", "Toronto Metropolitan · Dalhousie · Concordia"],
-  ["Germany", "Bremen · Jacobs · SRH Berlin"],
-  ["Australia", "Deakin · Griffith · La Trobe"],
-  ["Ireland", "Griffith College · UCC Pathways"],
-  ["Netherlands", "Hanze · Fontys · Saxion"],
+const PROCESS = [
+  ["Consultation", "We discuss your academic background, budget, destination and long-term goal."],
+  ["Course shortlist", "Together we build a realistic shortlist of institutions and programmes."],
+  ["Application", "We prepare documents, review your statement and submit through official channels."],
+  ["Offer & next steps", "We help you compare offers and plan the practicalities before you travel."],
 ];
 
 function Recruitment() {
@@ -78,7 +76,7 @@ function Recruitment() {
         intro="Our recruitment team guides students and families through course selection, applications, funding and visas — with honest advice about what is achievable and what is not."
       >
         <Button asChild variant="gold" size="xl">
-          <Link to="/contact">Request a free assessment</Link>
+          <Link to="/contact">Enquire Now</Link>
         </Button>
       </PageHero>
 
@@ -115,40 +113,37 @@ function Recruitment() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <dl className="mt-6 grid grid-cols-3 gap-4 rounded-2xl border border-border bg-card p-6 text-center shadow-soft">
-              {[
-                ["38", "Partner universities"],
-                ["96%", "Visa success rate"],
-                ["4", "Counselling languages"],
-              ].map(([v, l]) => (
-                <div key={l}>
-                  <dt className="font-display text-2xl text-primary">{v}</dt>
-                  <dd className="mt-1 text-[0.7rem] leading-snug text-muted-foreground">{l}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="text-base text-primary">Who we work with</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                School leavers, graduates and working professionals — together with the parents
+                supporting them. Every enquiry starts with an honest conversation about what is
+                realistic.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
 
       <Section className="bg-muted/60">
         <SectionHeading
-          eyebrow="Partner universities"
-          title="Where our students study"
-          intro="Direct application routes and pathway agreements across six study destinations."
+          eyebrow="Our process"
+          title="How the process works"
+          intro="Four clear stages, with your review and approval before anything is submitted."
           align="center"
         />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {PARTNERS.map(([country, list]) => (
-            <article
-              key={country}
+        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {PROCESS.map(([title, text], i) => (
+            <li
+              key={title}
               className="card-premium rounded-2xl border border-border bg-card p-7 shadow-soft"
             >
-              <h3 className="text-lg text-primary">{country}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{list}</p>
-            </article>
+              <span className="font-display text-3xl text-accent">{`0${i + 1}`}</span>
+              <h3 className="mt-4 text-lg text-primary">{title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </Section>
 
       <Section>
