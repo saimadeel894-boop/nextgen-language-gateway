@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileCheck2, GraduationCap, Plane, UserRoundCheck, Wallet } from "lucide-react";
+import { Compass, FileCheck2, GraduationCap, Plane, UserRoundCheck } from "lucide-react";
 
 import recruitmentImg from "@/assets/recruitment.jpg";
 import { Button } from "@/components/ui/button";
@@ -54,7 +54,7 @@ const SERVICES = [
     text: "A named advisor throughout, available to both students and parents at every stage.",
   },
   {
-    icon: Wallet,
+    icon: Compass,
     title: "Career & education guidance",
     text: "Help identifying funding and scholarship opportunities, and assembling the supporting documentation.",
   },
