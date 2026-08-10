@@ -1,32 +1,19 @@
-const PARTNERS = [
-  "University of Manchester",
-  "University of Toronto",
-  "Technische Universität München",
-  "University of Melbourne",
-  "King's College London",
-  "University of Amsterdam",
-  "Trinity College Dublin",
-  "University of British Columbia",
-];
+import { BadgeCheck } from "lucide-react";
+
+import { COMMITMENTS } from "./site-data";
 
 export function TrustStrip() {
-  const items = [...PARTNERS, ...PARTNERS];
   return (
-    <section
-      aria-label="Partner universities"
-      className="border-y border-border bg-background py-8"
-    >
-      <p className="text-center text-[0.7rem] font-semibold tracking-[0.24em] text-muted-foreground uppercase">
-        Students placed at partner institutions worldwide
-      </p>
-      <div className="fade-mask-x mt-6 overflow-hidden">
-        <ul className="marquee-track items-center gap-12 pr-12">
-          {items.map((name, i) => (
+    <section aria-label="What we stand for" className="border-y border-border bg-secondary/50">
+      <div className="mx-auto max-w-7xl px-5 py-7 lg:px-8">
+        <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:gap-x-12">
+          {COMMITMENTS.map((item) => (
             <li
-              key={`${name}-${i}`}
-              className="font-display text-base whitespace-nowrap text-primary/45 transition-colors hover:text-primary sm:text-lg"
+              key={item}
+              className="flex items-center gap-2.5 text-sm font-medium text-primary/80"
             >
-              {name}
+              <BadgeCheck className="size-4 shrink-0 text-accent" aria-hidden="true" />
+              {item}
             </li>
           ))}
         </ul>

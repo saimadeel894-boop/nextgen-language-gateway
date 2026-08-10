@@ -30,8 +30,8 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-5 max-w-sm text-sm leading-relaxed opacity-80">
-            An accredited language and international education centre preparing students for study,
-            work and life across borders.
+            A language and international education centre helping students prepare for study, work
+            and life across borders.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {SITE.socials.map((s) => (
@@ -58,6 +58,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/blog" className="opacity-85 transition-opacity hover:opacity-100">
+                Blog
+              </Link>
+            </li>
           </ul>
         </div>
 

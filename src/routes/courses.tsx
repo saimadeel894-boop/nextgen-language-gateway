@@ -12,13 +12,13 @@ export const Route = createFileRoute("/courses")({
       {
         name: "description",
         content:
-          "Explore General English, IELTS preparation, communication skills, business English, world languages and young learner programmes with levels, duration and fees.",
+          "Explore General English, IELTS preparation, communication skills, business English, world languages and young learner programmes with levels, duration and weekly hours.",
       },
       { property: "og:title", content: "Courses | English, IELTS & World Languages" },
       {
         property: "og:description",
         content:
-          "Six accredited programmes with defined entry levels, contact hours and measurable outcomes.",
+          "Six language programs with defined entry levels, contact hours and clear outcomes.",
       },
       { property: "og:url", content: "/courses" },
       { property: "og:type", content: "website" },
@@ -82,7 +82,7 @@ function Courses() {
               </ul>
 
               <Button asChild variant="navy" size="lg" className="mt-7 w-full rounded-full">
-                <Link to="/contact">Apply Now</Link>
+                <Link to="/contact">Enquire Now</Link>
               </Button>
             </article>
           ))}

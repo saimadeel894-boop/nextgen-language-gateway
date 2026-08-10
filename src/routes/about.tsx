@@ -21,7 +21,7 @@ export const Route = createFileRoute("/about")({
       {
         property: "og:description",
         content:
-          "An accredited language centre built on small classes, qualified teachers and measurable student progress.",
+          "A language centre built on small classes, qualified teachers and honest, measurable student progress.",
       },
       { property: "og:url", content: "/about" },
       { property: "og:type", content: "website" },
@@ -40,7 +40,7 @@ const PILLARS = [
   {
     icon: Telescope,
     title: "Our Vision",
-    text: "To be the most trusted independent language centre for international families, judged on published outcomes rather than marketing promises.",
+    text: "To be the most trusted independent language centre for international families, judged on the progress of our students rather than marketing promises.",
   },
   {
     icon: HeartHandshake,
@@ -73,9 +73,21 @@ const APPROACH = [
 ];
 
 const TEAM = [
-  { img: teacher1, name: "Dr. Eleanor Whitfield", role: "Director of Studies" },
-  { img: teacher2, name: "Michael Brennan", role: "Head of IELTS" },
-  { img: teacher3, name: "Amira Sallam", role: "Lead Student Counsellor" },
+  {
+    img: teacher1,
+    role: "Academic leadership",
+    text: "Oversees curriculum design, placement standards and teaching quality across every program.",
+  },
+  {
+    img: teacher2,
+    role: "Language instructors",
+    text: "Qualified teachers delivering General English, IELTS preparation and communication courses.",
+  },
+  {
+    img: teacher3,
+    role: "Student counsellors",
+    text: "Support with study plans, university applications and guidance for students and families.",
+  },
 ];
 
 function About() {
@@ -83,8 +95,8 @@ function About() {
     <>
       <PageHero
         eyebrow="About us"
-        title="Seventeen years of teaching students to be understood"
-        intro="Next Generations Language Center was founded in 2009 by a group of teachers who believed language schools should be measured by student outcomes, not enrolment numbers. That principle still governs how we hire, teach and report."
+        title="Teaching students to be understood"
+        intro="Next Generations Language Center was founded by teachers who believe a language school should be measured by how much its students progress. That principle still governs how we hire, teach and report."
       >
         <Button asChild variant="gold" size="xl">
           <Link to="/contact">Book a consultation</Link>
@@ -100,15 +112,14 @@ function About() {
               intro="We teach English, IELTS preparation and five world languages to adults and young learners, and we support international applicants through the full university admission process."
             />
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Our teaching team is small by design. Every instructor holds a recognised qualification,
-              is observed twice each term and contributes to curriculum review. Our counselling team
-              works alongside them, so academic progress and admission planning are never separate
+              Our teaching team is small by design. Every instructor holds a recognised teaching
+              qualification and contributes to curriculum review. Our counselling team works
+              alongside them, so academic progress and admission planning are never separate
               conversations.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Families come to us from more than forty countries. What they consistently tell us they
-              value is straightforward: clear communication, no hidden fees, and someone who answers
-              the phone.
+              Families come to us from many different countries, and what they ask for is
+              consistent: clear communication, no hidden fees, and someone who answers the phone.
             </p>
           </div>
           <div className="overflow-hidden rounded-3xl shadow-lift">
@@ -162,20 +173,21 @@ function About() {
         <SectionHeading eyebrow="Our team" title="The people you will work with" align="center" />
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {TEAM.map((t) => (
-            <article key={t.name} className="card-premium rounded-2xl bg-card shadow-soft">
+            <article
+              key={t.role}
+              className="card-premium overflow-hidden rounded-2xl border border-border bg-card shadow-soft"
+            >
               <img
                 src={t.img}
-                alt={`${t.name}, ${t.role}`}
+                alt={t.role}
                 loading="lazy"
                 width={800}
                 height={900}
-                className="aspect-4/5 w-full rounded-t-2xl object-cover"
+                className="aspect-4/5 w-full object-cover"
               />
               <div className="p-6">
-                <h3 className="text-lg text-primary">{t.name}</h3>
-                <p className="mt-1 text-xs font-semibold tracking-[0.14em] text-accent-foreground/70 uppercase">
-                  {t.role}
-                </p>
+                <h3 className="text-lg text-primary">{t.role}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
               </div>
             </article>
           ))}
@@ -190,12 +202,12 @@ function About() {
               Why students choose us
             </h2>
             <p className="mt-5 text-primary-foreground/78">
-              Small classes, teachers who stay, published outcomes and a counselling team that
-              understands the visa process as well as the syllabus.
+              Small classes, qualified teachers who stay, honest placement, and a counselling team
+              that understands the application process as well as the syllabus.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="gold" size="xl">
-                <Link to="/courses">Explore Courses</Link>
+                <Link to="/courses">Explore Our Programs</Link>
               </Button>
               <Button asChild variant="onDark" size="xl">
                 <Link to="/contact">Talk to us</Link>

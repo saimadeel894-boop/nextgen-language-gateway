@@ -24,8 +24,8 @@ export function Header() {
       <div className="surface-hero relative hidden overflow-hidden text-primary-foreground lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-2 text-xs lg:px-8">
           <p className="opacity-85">
-            <span className="font-semibold text-accent">Autumn intake open</span> — limited places in
-            IELTS Intensive and Academic English.
+            <span className="font-semibold text-accent">Enrolment open</span> — English, IELTS and
+            other language programs.
           </p>
           <div className="flex items-center gap-5 opacity-85">
             <a href={SITE.phoneHref} className="transition-opacity hover:opacity-100">
@@ -82,7 +82,7 @@ export function Header() {
               <span className="hidden xl:inline">{SITE.phone}</span>
             </a>
             <Button asChild variant="gold" size="lg" className="ml-2 rounded-full shine">
-              <Link to="/contact">Apply Now</Link>
+              <Link to="/contact">Enquire Now</Link>
             </Button>
           </nav>
 
@@ -108,7 +108,7 @@ export function Header() {
                 ))}
                 <Button asChild variant="gold" size="xl" className="mt-5">
                   <Link to="/contact" onClick={() => setOpen(false)}>
-                    Apply Now
+                    Enquire Now
                   </Link>
                 </Button>
                 <a
