@@ -11,11 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as StudentRecruitmentRouteImport } from './routes/student-recruitment'
 import { Route as StudentServicesRouteImport } from './routes/student-services'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,11 +25,6 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -52,73 +47,78 @@ const StudentServicesRoute = StudentServicesRouteImport.update({
   path: '/student-services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
   '/student-services': typeof StudentServicesRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
   '/student-services': typeof StudentServicesRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/student-recruitment': typeof StudentRecruitmentRoute
   '/student-services': typeof StudentServicesRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/courses'
     | '/student-recruitment'
     | '/student-services'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/courses'
     | '/student-recruitment'
     | '/student-services'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/courses'
     | '/student-recruitment'
     | '/student-services'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   StudentRecruitmentRoute: typeof StudentRecruitmentRoute
   StudentServicesRoute: typeof StudentServicesRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,13 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -172,28 +165,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   StudentRecruitmentRoute: StudentRecruitmentRoute,
   StudentServicesRoute: StudentServicesRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
