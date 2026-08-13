@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, PenLine } from "lucide-react";
+import { ArrowUpRight, Clock, PenLine } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { PageHero, Section } from "@/components/site/section";
+import { PageHero, Section, SectionHeading } from "@/components/site/section";
+import { Reveal } from "@/components/site/reveal";
 import { listPublishedPosts } from "@/lib/posts.functions";
 
 const postsQueryOptions = queryOptions({
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/blog/")({
       },
       { property: "og:url", content: "/blog" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
   }),
@@ -54,6 +56,11 @@ export function formatDate(value: string | null) {
     month: "long",
     year: "numeric",
   });
+}
+
+function readingTime(body: string) {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.round(words / 200))} min read`;
 }
 
 function Blog() {
@@ -94,92 +101,149 @@ function Blog() {
           </div>
         ) : (
           <>
-            <div className="flex flex-wrap gap-2">
+            <Reveal className="flex flex-wrap items-center gap-2">
               {categories.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => setActive(c)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  aria-pressed={active === c}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     active === c
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground hover:bg-primary-soft hover:text-primary"
+                      ? "border-primary bg-primary text-primary-foreground shadow-soft"
+                      : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-primary"
                   }`}
                 >
                   {c}
                 </button>
               ))}
-            </div>
+            </Reveal>
 
             {featured ? (
-              <article className="card-premium mt-12 grid gap-8 rounded-3xl border border-border bg-card p-8 shadow-soft lg:grid-cols-[1.2fr_1fr] lg:p-12">
-                <div>
-                  <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-foreground">
-                    {featured.category}
-                  </span>
-                  <h2 className="mt-5 text-3xl leading-tight text-primary sm:text-4xl">
-                    {featured.title}
-                  </h2>
-                  <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                    {featured.excerpt}
-                  </p>
-                  <p className="mt-6 text-xs text-muted-foreground">
-                    {formatDate(featured.published_at)}
-                  </p>
-                </div>
-                <div className="flex items-end">
-                  <Button asChild variant="navy" size="xl" className="w-full">
-                    <Link to="/blog/$slug" params={{ slug: featured.slug }}>
-                      Read article
-                      <ArrowUpRight />
-                    </Link>
-                  </Button>
-                </div>
-              </article>
+              <Reveal delay={80}>
+                <article className="card-premium mt-10 grid overflow-hidden rounded-3xl border border-border bg-card shadow-soft lg:grid-cols-[1.05fr_1fr]">
+                  <div className="relative min-h-[16rem] overflow-hidden bg-muted">
+                    {featured.cover_url ? (
+                      <img
+                        src={featured.cover_url}
+                        alt={featured.title}
+                        loading="eager"
+                        className="absolute inset-0 size-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                      />
+                    ) : (
+                      <div className="surface-hero absolute inset-0">
+                        <div className="grid-lines absolute inset-0 opacity-60" aria-hidden="true" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-col justify-center p-8 lg:p-12">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold tracking-wide text-accent-foreground uppercase">
+                        Featured
+                      </span>
+                      <span className="rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
+                        {featured.category}
+                      </span>
+                    </div>
+                    <h2 className="mt-5 text-3xl leading-[1.14] text-balance text-primary sm:text-4xl">
+                      {featured.title}
+                    </h2>
+                    <p className="mt-5 text-base leading-relaxed text-pretty text-muted-foreground">
+                      {featured.excerpt}
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                      <span>{formatDate(featured.published_at)}</span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="size-3.5" aria-hidden="true" />
+                        {readingTime(featured.body)}
+                      </span>
+                    </div>
+                    <div className="mt-8">
+                      <Button asChild variant="navy" size="xl">
+                        <Link to="/blog/$slug" params={{ slug: featured.slug }}>
+                          Read article
+                          <ArrowUpRight />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
             ) : null}
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {rest.map((post) => (
-                <article
-                  key={post.id}
-                  className="card-premium flex flex-col rounded-2xl border border-border bg-card p-7 shadow-soft"
-                >
-                  <span className="w-fit rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
-                    {post.category}
-                  </span>
-                  <h3 className="mt-5 text-xl leading-snug text-primary">{post.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {post.excerpt}
-                  </p>
-                  <p className="mt-6 text-xs text-muted-foreground">
-                    {formatDate(post.published_at)}
-                  </p>
-                  <Link
-                    to="/blog/$slug"
-                    params={{ slug: post.slug }}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-accent-foreground"
-                  >
-                    Read article <ArrowUpRight className="size-4" />
-                  </Link>
-                </article>
-              ))}
-            </div>
+            {rest.length ? (
+              <div className="mt-16">
+                <SectionHeading eyebrow="More articles" title="Latest from the centre" />
+                <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {rest.map((post, i) => (
+                    <Reveal key={post.id} delay={i * 70}>
+                      <article className="card-premium group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+                        <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                          {post.cover_url ? (
+                            <img
+                              src={post.cover_url}
+                              alt={post.title}
+                              loading="lazy"
+                              className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                            />
+                          ) : (
+                            <div className="surface-hero absolute inset-0">
+                              <div
+                                className="grid-lines absolute inset-0 opacity-60"
+                                aria-hidden="true"
+                              />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex flex-1 flex-col p-7">
+                          <span className="w-fit rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
+                            {post.category}
+                          </span>
+                          <h3 className="mt-4 text-xl leading-snug text-balance text-primary">
+                            {post.title}
+                          </h3>
+                          <p className="mt-3 flex-1 text-sm leading-relaxed text-pretty text-muted-foreground">
+                            {post.excerpt}
+                          </p>
+                          <div className="mt-6 flex items-center gap-x-3 text-xs text-muted-foreground">
+                            <span>{formatDate(post.published_at)}</span>
+                            <span aria-hidden="true">·</span>
+                            <span>{readingTime(post.body)}</span>
+                          </div>
+                          <Link
+                            to="/blog/$slug"
+                            params={{ slug: post.slug }}
+                            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent-foreground"
+                          >
+                            Read article
+                            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </Link>
+                        </div>
+                      </article>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </>
         )}
       </Section>
 
       <Section className="bg-muted/60">
         <div className="surface-hero relative overflow-hidden rounded-3xl px-7 py-14 text-center sm:px-12">
-          <h2 className="mx-auto max-w-2xl text-3xl text-primary-foreground sm:text-4xl">
-            Get study tips and intake dates by email
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/75">
-            One short newsletter each month. No spam, unsubscribe any time.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="gold" size="xl">
-              <Link to="/contact">Join the mailing list</Link>
-            </Button>
+          <div className="grid-lines pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
+          <div className="relative">
+            <h2 className="mx-auto max-w-2xl text-3xl text-balance text-primary-foreground sm:text-4xl">
+              Get study tips and intake dates by email
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-primary-foreground/75">
+              One short newsletter each month. No spam, unsubscribe any time.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button asChild variant="gold" size="xl">
+                <Link to="/contact">Join the mailing list</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </Section>
