@@ -14,9 +14,11 @@ const postsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/blog/")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search['category'] === "string" ? (search['category'] as string) : "All",
-  }),
+  validateSearch: (search: Record<string, unknown>): { category?: string } => {
+    const c = search['category'];
+    return typeof c === "string" && c && c !== "All" ? { category: c } : {};
+  },
+
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions),
 
   head: () => ({
