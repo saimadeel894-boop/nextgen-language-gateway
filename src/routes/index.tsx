@@ -471,6 +471,11 @@ function Home() {
               className="grid-lines pointer-events-none absolute inset-0 opacity-70"
               aria-hidden="true"
             />
+            <Scene3D
+              variant="accent"
+              className="opacity-55 [mask-image:radial-gradient(80%_100%_at_85%_50%,#000_30%,transparent_85%)]"
+            />
+
             <div className="relative mx-auto max-w-2xl">
               <h2 className="text-3xl text-balance text-primary-foreground sm:text-4xl">
                 Not sure which course is right for you?
