@@ -103,12 +103,12 @@ export default function AbstractScene({ variant = "hero" }: { variant?: SceneVar
       <Rig speed={isHero ? 0.08 : 0.05}>
         {isHero ? (
           <>
-            <SpinningTorus position={[1.7, 0.5, 0]} scale={1.5} color={GOLD} />
-            <SpinningTorus position={[-2.1, -1.1, -1.5]} scale={0.85} color={GOLD_LIGHT} />
-            <GlassBall position={[-1.6, 1.2, -0.5]} scale={0.95} color={NAVY_LIGHT} opacity={0.5} />
-            <GlassBall position={[2.6, -1.5, -1]} scale={0.6} color={GOLD_LIGHT} opacity={0.45} />
-            <Shard position={[0.1, -0.9, 0.6]} scale={0.42} />
-            <Shard position={[-3.1, 1.7, -2]} scale={0.3} />
+            <SpinningTorus position={[3.3, 1.1, -0.5]} scale={1.6} color={GOLD} />
+            <SpinningTorus position={[1.9, -1.8, -2]} scale={0.8} color={GOLD_LIGHT} />
+            <GlassBall position={[4.6, -1.2, -1]} scale={0.9} color={NAVY_LIGHT} opacity={0.45} />
+            <GlassBall position={[2.4, 2.1, -2]} scale={0.55} color={GOLD_LIGHT} opacity={0.4} />
+            <Shard position={[5.1, 1.9, -1.5]} scale={0.4} />
+            <Shard position={[0.6, 2.4, -2.5]} scale={0.28} />
           </>
         ) : (
           <>
