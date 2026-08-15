@@ -24,6 +24,7 @@ import { Section, SectionHeading } from "@/components/site/section";
 import { Reveal } from "@/components/site/reveal";
 import { TrustStrip } from "@/components/site/trust-strip";
 import { EnquiryForm } from "@/components/site/enquiry-form";
+import { Scene3D } from "@/components/site/scene-3d";
 import { COURSES, SITE } from "@/components/site/site-data";
 
 export const Route = createFileRoute("/")({
@@ -146,6 +147,7 @@ function Home() {
           style={{ background: "var(--gradient-gold)" }}
           aria-hidden="true"
         />
+        <Scene3D variant="hero" className="opacity-70 [mask-image:radial-gradient(120%_100%_at_60%_40%,#000_55%,transparent_100%)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
           <div>
             <span
