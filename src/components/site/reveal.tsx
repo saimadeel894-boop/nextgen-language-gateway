@@ -36,14 +36,17 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
+  const Component = Tag as "div";
+
   return (
-    <Tag
-      ref={ref}
+    <Component
+      ref={ref as React.Ref<HTMLDivElement>}
       data-revealed={shown ? "true" : "false"}
       style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
       className={`reveal-on-scroll ${className}`}
     >
       {children}
-    </Tag>
+    </Component>
   );
+
 }

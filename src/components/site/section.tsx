@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Scene3D } from "@/components/site/scene-3d";
 
 export function Section({
   children,
@@ -91,6 +92,10 @@ export function PageHero({
         className="drift pointer-events-none absolute -top-32 -right-24 size-[26rem] rounded-full opacity-25 blur-3xl"
         style={{ background: "var(--gradient-gold)" }}
         aria-hidden="true"
+      />
+      <Scene3D
+        variant="accent"
+        className="inset-y-0 right-0 hidden w-[42%] opacity-50 lg:block"
       />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
         <div className="reveal max-w-3xl">
