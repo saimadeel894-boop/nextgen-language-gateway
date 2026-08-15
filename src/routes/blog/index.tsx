@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { ArrowUpRight, Clock, PenLine } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,11 @@ const postsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/blog/")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    category: typeof search['category'] === "string" ? (search['category'] as string) : "All",
+  }),
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions),
+
   head: () => ({
     meta: [
       { title: "Blog & News | Language Learning Tips and Student Updates" },
