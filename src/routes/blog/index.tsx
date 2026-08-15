@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { ArrowUpRight, Clock, PenLine } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,13 @@ const postsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/blog/")({
+  validateSearch: (search: Record<string, unknown>): { category?: string } => {
+    const c = search['category'];
+    return typeof c === "string" && c && c !== "All" ? { category: c } : {};
+  },
+
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions),
+
   head: () => ({
     meta: [
       { title: "Blog & News | Language Learning Tips and Student Updates" },
@@ -65,13 +71,27 @@ function readingTime(body: string) {
 
 function Blog() {
   const { data: posts } = useSuspenseQuery(postsQueryOptions);
+  const navigate = useNavigate({ from: "/blog/" });
+  const { category } = Route.useSearch();
+  const active = category ?? "All";
+
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(posts.map((p) => p.category)))],
     [posts],
   );
-  const [active, setActive] = useState("All");
+  const counts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of posts) map.set(p.category, (map.get(p.category) ?? 0) + 1);
+    map.set("All", posts.length);
+    return map;
+  }, [posts]);
+
+  const setActive = (c: string) =>
+    navigate({ search: () => (c === "All" ? {} : { category: c }), replace: true });
+
   const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
   const [featured, ...rest] = filtered;
+
 
   return (
     <>
@@ -115,9 +135,23 @@ function Blog() {
                   }`}
                 >
                   {c}
+                  <span className="ml-2 text-xs opacity-70">{counts.get(c) ?? 0}</span>
+
                 </button>
               ))}
             </Reveal>
+
+            {filtered.length === 0 ? (
+              <div className="mt-10 rounded-3xl border border-dashed border-border bg-card p-12 text-center">
+                <p className="text-muted-foreground">
+                  No articles in “{active}” yet.
+                </p>
+                <Button variant="navy" size="lg" className="mt-6" onClick={() => setActive("All")}>
+                  Show all articles
+                </Button>
+              </div>
+            ) : null}
+
 
             {featured ? (
               <Reveal delay={80}>
