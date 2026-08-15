@@ -135,6 +135,8 @@ function Blog() {
                   }`}
                 >
                   {c}
+                  <span className="ml-2 text-xs opacity-70">{counts.get(c) ?? 0}</span>
+
                 </button>
               ))}
             </Reveal>
