@@ -141,6 +141,18 @@ function Blog() {
               ))}
             </Reveal>
 
+            {filtered.length === 0 ? (
+              <div className="mt-10 rounded-3xl border border-dashed border-border bg-card p-12 text-center">
+                <p className="text-muted-foreground">
+                  No articles in “{active}” yet.
+                </p>
+                <Button variant="navy" size="lg" className="mt-6" onClick={() => setActive("All")}>
+                  Show all articles
+                </Button>
+              </div>
+            ) : null}
+
+
             {featured ? (
               <Reveal delay={80}>
                 <article className="card-premium mt-10 grid overflow-hidden rounded-3xl border border-border bg-card shadow-soft lg:grid-cols-[1.05fr_1fr]">
