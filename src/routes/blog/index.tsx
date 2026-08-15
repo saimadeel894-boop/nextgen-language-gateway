@@ -71,7 +71,7 @@ function readingTime(body: string) {
 
 function Blog() {
   const { data: posts } = useSuspenseQuery(postsQueryOptions);
-  const navigate = useNavigate({ from: "/blog" });
+  const navigate = useNavigate({ from: "/blog/" });
   const { category } = Route.useSearch();
   const active = category ?? "All";
 
@@ -87,7 +87,7 @@ function Blog() {
   }, [posts]);
 
   const setActive = (c: string) =>
-    navigate({ search: c === "All" ? {} : { category: c }, replace: true });
+    navigate({ search: () => (c === "All" ? {} : { category: c }), replace: true });
 
   const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
   const [featured, ...rest] = filtered;
