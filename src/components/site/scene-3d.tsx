@@ -39,12 +39,18 @@ function Scene({ variant }: { variant: SceneVariant }) {
 export function Scene3D({
   variant = "hero",
   className = "",
+  fade = "radial-gradient(closest-side, #000 35%, transparent 100%)",
 }: {
   variant?: SceneVariant;
   className?: string;
+  fade?: string;
 }) {
   return (
-    <div className={`pointer-events-none absolute inset-0 ${className}`} aria-hidden="true">
+    <div
+      className={`pointer-events-none absolute ${className}`}
+      style={{ maskImage: fade, WebkitMaskImage: fade }}
+      aria-hidden="true"
+    >
       <ClientOnly fallback={null}>
         <Scene variant={variant} />
       </ClientOnly>

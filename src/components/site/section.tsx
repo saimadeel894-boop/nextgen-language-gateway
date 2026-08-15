@@ -95,7 +95,7 @@ export function PageHero({
       />
       <Scene3D
         variant="accent"
-        className="opacity-50 [mask-image:radial-gradient(70%_100%_at_88%_45%,#000_25%,transparent_80%)]"
+        className="inset-y-0 right-0 hidden w-[42%] opacity-50 lg:block"
       />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
         <div className="reveal max-w-3xl">

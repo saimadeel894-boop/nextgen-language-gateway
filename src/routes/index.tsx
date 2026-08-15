@@ -147,7 +147,7 @@ function Home() {
           style={{ background: "var(--gradient-gold)" }}
           aria-hidden="true"
         />
-        <Scene3D variant="hero" className="opacity-60 [mask-image:radial-gradient(75%_100%_at_92%_45%,#000_20%,transparent_78%)]" />
+        <Scene3D variant="hero" className="inset-y-0 right-0 hidden w-[55%] opacity-70 lg:block" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
           <div>
             <span
@@ -473,7 +473,7 @@ function Home() {
             />
             <Scene3D
               variant="accent"
-              className="opacity-55 [mask-image:radial-gradient(80%_100%_at_85%_50%,#000_30%,transparent_85%)]"
+              className="inset-y-0 right-0 hidden w-[38%] opacity-45 lg:block"
             />
 
             <div className="relative mx-auto max-w-2xl">
