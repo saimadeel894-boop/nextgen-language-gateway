@@ -71,13 +71,27 @@ function readingTime(body: string) {
 
 function Blog() {
   const { data: posts } = useSuspenseQuery(postsQueryOptions);
+  const navigate = useNavigate({ from: "/blog" });
+  const { category } = Route.useSearch();
+  const active = category ?? "All";
+
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(posts.map((p) => p.category)))],
     [posts],
   );
-  const [active, setActive] = useState("All");
+  const counts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of posts) map.set(p.category, (map.get(p.category) ?? 0) + 1);
+    map.set("All", posts.length);
+    return map;
+  }, [posts]);
+
+  const setActive = (c: string) =>
+    navigate({ search: c === "All" ? {} : { category: c }, replace: true });
+
   const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
   const [featured, ...rest] = filtered;
+
 
   return (
     <>
