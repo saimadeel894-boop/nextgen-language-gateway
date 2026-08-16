@@ -92,7 +92,7 @@ export default function AbstractScene({ variant = "hero" }: { variant?: SceneVar
     <Canvas
       dpr={dpr}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 6.5], fov: 42 }}
+      camera={{ position: [0, 0, isHero ? 9 : 6.5], fov: 42 }}
       style={{ pointerEvents: "none" }}
     >
       <ambientLight intensity={0.6} />
@@ -103,12 +103,12 @@ export default function AbstractScene({ variant = "hero" }: { variant?: SceneVar
       <Rig speed={isHero ? 0.08 : 0.05}>
         {isHero ? (
           <>
-            <SpinningTorus position={[0.9, 1.2, -0.5]} scale={1.5} color={GOLD} />
-            <SpinningTorus position={[-1.4, -1.6, -2]} scale={0.8} color={GOLD_LIGHT} />
-            <GlassBall position={[1.6, -1.4, -1]} scale={0.9} color={NAVY_LIGHT} opacity={0.45} />
-            <GlassBall position={[-1.2, 1.9, -2]} scale={0.55} color={GOLD_LIGHT} opacity={0.4} />
-            <Shard position={[2.2, 1.6, -1.5]} scale={0.4} />
-            <Shard position={[-0.2, -0.4, 0.4]} scale={0.3} />
+            <SpinningTorus position={[1.5, 2.2, 0]} scale={1.5} color={GOLD} />
+            <SpinningTorus position={[-2.4, -2.4, -1]} scale={0.9} color={GOLD_LIGHT} />
+            <GlassBall position={[2.7, -2.2, -1]} scale={1} color={NAVY_LIGHT} opacity={0.45} />
+            <GlassBall position={[-2.6, 2.3, -2]} scale={0.7} color={GOLD_LIGHT} opacity={0.4} />
+            <Shard position={[3.3, 1.2, -1]} scale={0.45} />
+            <Shard position={[-0.6, -3.1, 0.4]} scale={0.35} />
           </>
         ) : (
           <>
